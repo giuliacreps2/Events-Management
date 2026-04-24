@@ -33,9 +33,9 @@ public class User implements UserDetails {
     private Role role;
 
     @Column(nullable = false)
-    private String first_name;
+    private String firstName;
     @Column(nullable = false)
-    private String last_name;
+    private String lastName;
     @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
@@ -45,9 +45,9 @@ public class User implements UserDetails {
     private LocalDate birth_date;
 
 
-    public User(String first_name, String last_name, String email, String password, LocalDate birth_date) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public User(String firstName, String lastName, String email, String password, LocalDate birth_date) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.birth_date = birth_date;

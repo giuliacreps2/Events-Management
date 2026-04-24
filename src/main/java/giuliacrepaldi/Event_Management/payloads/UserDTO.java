@@ -11,10 +11,10 @@ import java.time.LocalDate;
 public record UserDTO(
         @NotBlank(message = "Your first name cannot be empty")
         @Size(min = 2, max = 30, message = "Your first name must be between 2 and 30 characters")
-        String first_name,
+        String firstName,
         @NotBlank(message = "Your last name cannot be empty")
         @Size(min = 2, max = 30, message = "Your last name must be between 2 and 30 characters")
-        String last_name,
+        String lastName,
         @NotBlank(message = "Your email cannot be empty")
         @Email(message = "The email address you entered is not in the correct format.")
         String email,
