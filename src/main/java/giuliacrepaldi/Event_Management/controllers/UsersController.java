@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/users")
@@ -37,8 +38,8 @@ public class UsersController {
 
     //2. GET
     @GetMapping("/{userId}")
-    public User getById(@PathVariable String email) {
-        return this.usersService.findByEmail(email);
+    public User getById(@PathVariable UUID userId) {
+        return this.usersService.findById(userId);
     }
 
     //2. GET ME
