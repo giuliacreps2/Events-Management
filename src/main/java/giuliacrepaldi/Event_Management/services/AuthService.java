@@ -25,7 +25,7 @@ public class AuthService {
     public String checkCredentialsAndGenerateToken(LoginDTO body) {
         try {
             User found = this.usersService.findByEmail(body.email());
-            if (found.getPassword().equals(body.password())) {
+            if (bcrypt.matches(body.password(), found.getPassword())) {
                 return this.tokenTools.generateToken(found);
             } else {
                 throw new UnauthorizedException("");

@@ -2,7 +2,6 @@ package giuliacrepaldi.Event_Management.services;
 
 import giuliacrepaldi.Event_Management.entities.User;
 import giuliacrepaldi.Event_Management.enums.Role;
-import giuliacrepaldi.Event_Management.exceptions.BadRequestException;
 import giuliacrepaldi.Event_Management.exceptions.NotFoundException;
 import giuliacrepaldi.Event_Management.exceptions.UnauthorizedException;
 import giuliacrepaldi.Event_Management.payloads.UserDTO;
@@ -25,15 +24,7 @@ public class UsersService {
     //1.SAVE saveUser(UserDTO dto)
 
     public User saveUser(UserDTO body) {
-        if (this.usersRepository.existsByEmail(body.email()))
-            throw new BadRequestException("Email" + body.email() + " already exists");
-
-        User newUser = new User(body.first_name(), body.last_name(), body.email(), this.bcrypt.encode(body.password()), body.birth_date());
-        User savedUser = this.usersRepository.save(newUser);
-
-        log.info("User" + savedUser.getFirst_name() + " " + savedUser.getEmail() + " saved successfully");
-
-        return savedUser;
+        return null;
     }
 
     //2.FINDBYEMAIL findByEmail(String email)
