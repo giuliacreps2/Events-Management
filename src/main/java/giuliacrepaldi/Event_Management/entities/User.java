@@ -30,6 +30,7 @@ public class User implements UserDetails {
     private UUID userId;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role;
 
     @Column(nullable = false)
