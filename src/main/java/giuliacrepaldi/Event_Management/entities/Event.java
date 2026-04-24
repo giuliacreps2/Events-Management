@@ -29,11 +29,21 @@ public class Event {
     private LocalDate eventDate;
     @Column(nullable = false)
     private Integer maxParticipants;
+    private Integer currentParticipants = 0;
 
 
     @ManyToOne
     @JoinColumn(name = "userId")
     private User organizer;
+
+    public Event(String eventName, String eventDescription, String location, LocalDate eventDate, Integer maxParticipants, User organizer) {
+        this.eventName = eventName;
+        this.eventDescription = eventDescription;
+        this.location = location;
+        this.eventDate = eventDate;
+        this.maxParticipants = maxParticipants;
+        this.organizer = organizer;
+    }
 
     public Event(String eventName, String eventDescription, String location, LocalDate eventDate, Integer maxParticipants) {
         this.eventName = eventName;

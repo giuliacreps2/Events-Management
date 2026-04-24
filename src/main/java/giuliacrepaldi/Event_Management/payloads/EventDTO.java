@@ -1,6 +1,5 @@
 package giuliacrepaldi.Event_Management.payloads;
 
-import giuliacrepaldi.Event_Management.entities.User;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -15,7 +14,6 @@ public record EventDTO(
         String eventDescription,
         String location,
         LocalDate eventDate,
-        Integer maxParticipants,
-        User organizer
+        Integer maxParticipants
 ) {
 }
