@@ -22,6 +22,6 @@ public record UserDTO(
         @Size(min = 4, message = "Password must be at least 4 characters long")
         String password,
         @Past
-        LocalDate birth_date
+        LocalDate birthDate
 ) {
 }

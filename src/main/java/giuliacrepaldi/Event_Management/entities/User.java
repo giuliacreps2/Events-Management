@@ -42,15 +42,15 @@ public class User implements UserDetails {
     @JsonIgnore
     private String password;
 
-    private LocalDate birth_date;
+    private LocalDate birthDate;
 
 
-    public User(String firstName, String lastName, String email, String password, LocalDate birth_date) {
+    public User(String firstName, String lastName, String email, String password, LocalDate birthDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.birth_date = birth_date;
+        this.birthDate = birthDate;
         this.role = Role.USER;
     }
 
