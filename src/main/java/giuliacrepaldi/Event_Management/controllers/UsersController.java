@@ -6,6 +6,7 @@ import giuliacrepaldi.Event_Management.payloads.NewUserRespDTO;
 import giuliacrepaldi.Event_Management.payloads.UserDTO;
 import giuliacrepaldi.Event_Management.services.UsersService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,25 @@ public class UsersController {
         }
         User newUser = this.usersService.saveUser(body);
         return new NewUserRespDTO(newUser.getUserId());
+    }
+
+    //2. GET
+    @GetMapping("/{userId}")
+    public User getById(@PathVariable String email) {
+        return this.usersService.findByEmail(email);
+    }
+
+    //2. GET ME
+    @GetMapping("/me")
+    public User getOwnProfile(@AuthenticationPrincipal User currentAuthenticatedUser) {
+        return currentAuthenticatedUser;
+    }
+
+    //3.DELETE
+    @DeleteMapping("/me")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteOwnProfile(@AuthenticationPrincipal User currentAuthenticatedUser) {
+        this.usersService.findByEmailAndDelete(currentAuthenticatedUser.getEmail());
     }
 
 }

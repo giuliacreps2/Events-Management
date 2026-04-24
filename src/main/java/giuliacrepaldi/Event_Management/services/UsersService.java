@@ -1,8 +1,10 @@
 package giuliacrepaldi.Event_Management.services;
 
 import giuliacrepaldi.Event_Management.entities.User;
+import giuliacrepaldi.Event_Management.enums.Role;
 import giuliacrepaldi.Event_Management.exceptions.BadRequestException;
 import giuliacrepaldi.Event_Management.exceptions.NotFoundException;
+import giuliacrepaldi.Event_Management.exceptions.UnauthorizedException;
 import giuliacrepaldi.Event_Management.payloads.UserDTO;
 import giuliacrepaldi.Event_Management.repositories.UsersRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -40,5 +42,15 @@ public class UsersService {
                 .orElseThrow(() -> new NotFoundException("Email" + email + " not found"));
     }
 
+    //3.DELETE deleteUser(String email, User user)
+    public void deleteUser(String email, User user) {
+        if (user.getRole().equals(Role.ADMIN) || user.getEmail().equals(email)) {
+            this.usersRepository.delete(user);
+        } else {
+            throw new UnauthorizedException("Unauthorized");
+        }
+    }
 
+    public void findByEmailAndDelete(String email) {
+    }
 }
