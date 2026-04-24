@@ -27,8 +27,11 @@ public class EventsService {
     //1. SAVE (EventDTO body, User organizer)
     public Event saveEvent(EventDTO body, User organizer) {
         //Controlli
-        if (this.eventsRepository.existsById()) throw new BadRequestException("Event already exists");
+//        if (this.eventsRepository.existsByEventId(eventiD)) throw new BadRequestException("Event already exists");
 
+        this.eventsRepository.findByEventName(body.eventName()).ifPresent(event -> {
+            throw new BadRequestException("Event already exists");
+        });
         Event newEvent = new Event(body.eventName(), body.eventDescription(), body.location(), body.eventDate(), body.maxParticipants(), organizer);
         log.info("Saving new event: {}", newEvent);
 
