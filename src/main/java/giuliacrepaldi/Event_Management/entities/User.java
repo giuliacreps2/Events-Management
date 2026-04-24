@@ -1,5 +1,7 @@
 package giuliacrepaldi.Event_Management.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import giuliacrepaldi.Event_Management.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-
+@JsonIgnoreProperties({"accountNonExpired", "accountNonLocked", "authorities", "credentialsNonExpired", "enabled"})
 
 @Entity
 @Table(name = "users")
@@ -31,6 +33,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
     private LocalDate birth_date;
